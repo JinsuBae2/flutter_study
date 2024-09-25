@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:math';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Lotto extends StatefulWidget {
   const Lotto({super.key});
@@ -22,6 +24,7 @@ class _LottoState extends State<Lotto> {
           break;
         }
       }
+      lottery.sort();
       listLottery.add(lottery);
     });
   }
@@ -34,23 +37,89 @@ class _LottoState extends State<Lotto> {
         title: const Text('Lotto app'),
       ),
       body: Center(
-        child: ListView.separated(
+        child: ListView.builder(
           padding: const EdgeInsets.all(8),
           itemCount: listLottery.length,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              child: Text(
-                listLottery[index].toString(),
-                style: const TextStyle(
-                  color: Colors.red,
-                ),
+            var path_1 = 'svg/${listLottery[index][0]}.svg';
+            var path_2 = 'svg/${listLottery[index][1]}.svg';
+            var path_3 = 'svg/${listLottery[index][2]}.svg';
+            var path_4 = 'svg/${listLottery[index][3]}.svg';
+            var path_5 = 'svg/${listLottery[index][4]}.svg';
+            var path_6 = 'svg/${listLottery[index][5]}.svg';
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: SvgPicture.asset(
+                      path_1,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.black,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: SvgPicture.asset(
+                      path_2,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.black,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: SvgPicture.asset(
+                      path_3,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.black,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: SvgPicture.asset(
+                      path_4,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.black,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: SvgPicture.asset(
+                      path_5,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.black,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: SvgPicture.asset(
+                      path_6,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.black,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider(
-              color: Colors.grey,
-              thickness: 0.5,
             );
           },
         ),
