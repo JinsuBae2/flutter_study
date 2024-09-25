@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:math';
-
 import 'package:login_app/lottery_app/lotto_ball.dart';
 import 'package:lottie/lottie.dart';
 
@@ -16,20 +14,30 @@ class Lotto extends StatefulWidget {
 class _LottoState extends State<Lotto> {
   List<List<int>> listLottery = [];
   void _createNumber() {
-    setState(() {
-      List<int> lottery = [];
-      while (true) {
-        var rnd = Random().nextInt(45) + 1;
-        if (!lottery.contains(rnd)) {
-          lottery.add(rnd);
+    if (listLottery.length < 15) {
+      setState(() {
+        List<int> lottery = [];
+        while (true) {
+          var rnd = Random().nextInt(45) + 1;
+          if (!lottery.contains(rnd)) {
+            lottery.add(rnd);
+          }
+          if (lottery.length == 6) {
+            break;
+          }
         }
-        if (lottery.length == 6) {
-          break;
-        }
-      }
-      lottery.sort();
-      listLottery.add(lottery);
-    });
+        lottery.sort();
+        listLottery.add(lottery);
+      });
+    } else {
+      Fluttertoast.showToast(
+        msg: "15번 까지만 생성 가능합니다.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+      );
+    }
   }
 
   @override
