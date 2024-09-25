@@ -22,223 +22,230 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 80,
-                ),
-                Text(
-                  "Current width: ${currentWidth.toString()}",
-                  style: const TextStyle(
-                    fontSize: 25,
+          child: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 80,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Image.asset(
-                  'images/codingchef.png',
-                  width: 150,
-                  height: 150,
-                )
-                    .animate()
-                    .fade()
-                    .slideY(begin: -3, end: 0)
-                    .animate(
-                      onPlay: (controller) => controller.repeat(),
-                    )
-                    .shake(
-                      hz: 4,
-                      curve: Curves.easeInOutCubic,
-                      duration: 1800.ms,
+                  Text(
+                    "Current width: ${currentWidth.toString()}",
+                    style: const TextStyle(
+                      fontSize: 25,
                     ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Welcome Back!',
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
                   ),
-                )
-                    .animate()
-                    .fade(delay: 500.ms)
-                    .slideX(
-                      begin: -2,
-                      end: 0,
-                    )
-                    .tint(
-                      color: Colors.purple,
-                      delay: 1000.ms,
-                    ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Sign in to continue',
-                  style: TextStyle(
-                    color: Colors.grey[700],
+                  const SizedBox(
+                    height: 10,
                   ),
-                )
-                    .animate()
-                    .fade(
-                      delay: 500.ms,
-                    )
-                    .slideX(
-                      begin: 2,
-                      end: 0,
+                  Image.asset(
+                    'images/codingchef.png',
+                    width: 150,
+                    height: 150,
+                  )
+                      .animate()
+                      .fade()
+                      .slideY(begin: -3, end: 0)
+                      .animate(
+                        onPlay: (controller) => controller.repeat(),
+                      )
+                      .shake(
+                        hz: 4,
+                        curve: Curves.easeInOutCubic,
+                        duration: 1800.ms,
+                      ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Welcome Back!',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
-                const SizedBox(
-                  height: 25,
-                ),
-                MyTextField(
-                  controller: emailController,
-                  hintText: 'Username',
-                  obscureText: false,
-                ).animate().fade().slideX(
-                      begin: -3,
-                      end: 0,
-                      duration: 900.ms,
+                  )
+                      .animate()
+                      .fade(delay: 500.ms)
+                      .slideX(
+                        begin: -2,
+                        end: 0,
+                      )
+                      .tint(
+                        color: Colors.purple,
+                        delay: 1000.ms,
+                      ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Sign in to continue',
+                    style: TextStyle(
+                      color: Colors.grey[700],
                     ),
-                const SizedBox(
-                  height: 20,
-                ),
-                MyTextField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  obscureText: true,
-                ).animate().fade().slideX(
-                      begin: 3,
-                      end: 0,
-                      duration: 900.ms,
-                    ),
-                const SizedBox(
-                  height: 25,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    if (emailController.text == 'email@email.com' &&
-                        passwordController.text == '123456') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Lotto()),
-                      );
-                    } else if (emailController.text == 'email@email.com' &&
-                        passwordController.text != '123456') {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('비밀번호를 확인하세요'),
-                          duration: Duration(seconds: 5),
-                        ),
-                      );
-                    } else if (emailController.text != 'email@email.com' &&
-                        passwordController.text == '123456') {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('이메일을 확인하세요'),
-                          duration: Duration(seconds: 5),
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('로그인 정보를 확인하세요'),
-                          duration: Duration(seconds: 5),
-                        ),
-                      );
-                    }
-                  },
-                  child: MyContainer(
-                    width: 120,
-                    height: 50,
-                    backgroundColor: Colors.orange[200],
-                    radius: 20,
-                    icon: const Icon(
-                      Icons.arrow_forward,
-                    ),
-                  ).animate().fade(delay: 1000.ms),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Not a number?',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ).animate().fade().slideX(
-                          begin: -3,
-                          end: 0,
-                          duration: 300.ms,
-                        ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Register now',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
+                  )
+                      .animate()
+                      .fade(
+                        delay: 500.ms,
+                      )
+                      .slideX(
+                        begin: 2,
+                        end: 0,
+                      ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  MyTextField(
+                    emailType: TextInputType.emailAddress,
+                    controller: emailController,
+                    hintText: 'Username',
+                    obscureText: false,
+                  ).animate().fade().slideX(
+                        begin: -3,
+                        end: 0,
+                        duration: 900.ms,
+                      ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  MyTextField(
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: true,
+                  ).animate().fade().slideX(
+                        begin: 3,
+                        end: 0,
+                        duration: 900.ms,
+                      ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      if (emailController.text == 'email@email.com' &&
+                          passwordController.text == '123456') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Lotto()),
+                        );
+                      } else if (emailController.text == 'email@email.com' &&
+                          passwordController.text != '123456') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('비밀번호를 확인하세요'),
+                            duration: Duration(seconds: 5),
+                          ),
+                        );
+                      } else if (emailController.text != 'email@email.com' &&
+                          passwordController.text == '123456') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('이메일을 확인하세요'),
+                            duration: Duration(seconds: 5),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('로그인 정보를 확인하세요'),
+                            duration: Duration(seconds: 5),
+                          ),
+                        );
+                      }
+                    },
+                    child: MyContainer(
+                      width: 120,
+                      height: 50,
+                      backgroundColor: Colors.orange[200],
+                      radius: 20,
+                      icon: const Icon(
+                        Icons.arrow_forward,
+                      ),
+                    ).animate().fade(delay: 1000.ms),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Not a number?',
+                        style: TextStyle(color: Colors.grey[700]),
+                      ).animate().fade().slideX(
+                            begin: -3,
+                            end: 0,
+                            duration: 300.ms,
+                          ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Register now',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Column(
-                      children: [
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text(
-                          'Powered by BaeJinsu',
-                          style: TextStyle(
-                            fontSize: 11,
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 30,
                           ),
-                        ).animate().fade().slideX(
-                              begin: -3,
-                              end: 0,
-                              delay: 300.ms,
+                          const Text(
+                            'Powered by BaeJinsu',
+                            style: TextStyle(
+                              fontSize: 11,
                             ),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    MyContainer(
-                      width: 50,
-                      height: 50,
-                      backgroundColor: Colors.grey[200],
-                      radius: 16,
-                      imagePath: 'images/codingchef3.png',
-                    )
-                        .animate()
-                        .slideX(
-                          begin: 3,
-                          end: 0,
-                          duration: 300.ms,
-                        )
-                        .animate(
-                          onPlay: (controller) => controller.repeat(),
-                        )
-                        .shimmer(
-                          delay: 1000.ms,
-                          duration: 1000.ms,
-                        ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                )
-              ],
+                          ).animate().fade().slideX(
+                                begin: -3,
+                                end: 0,
+                                delay: 300.ms,
+                              ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      MyContainer(
+                        width: 50,
+                        height: 50,
+                        backgroundColor: Colors.grey[200],
+                        radius: 16,
+                        imagePath: 'images/codingchef3.png',
+                      )
+                          .animate()
+                          .slideX(
+                            begin: 3,
+                            end: 0,
+                            duration: 300.ms,
+                          )
+                          .animate(
+                            onPlay: (controller) => controller.repeat(),
+                          )
+                          .shimmer(
+                            delay: 1000.ms,
+                            duration: 1000.ms,
+                          ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
