@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'dart:math';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:login_app/lottery_app/lotto_ball.dart';
 
 class Lotto extends StatefulWidget {
   const Lotto({super.key});
@@ -32,9 +33,11 @@ class _LottoState extends State<Lotto> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 83, 125, 198),
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: const Color.fromARGB(255, 208, 105, 3),
         title: const Text('Lotto app'),
+        centerTitle: true,
       ),
       body: Center(
         child: ListView.builder(
@@ -50,74 +53,29 @@ class _LottoState extends State<Lotto> {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: SvgPicture.asset(
-                      path_1,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.black,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                  LottoBall(path: path_1),
+                  const SizedBox(
+                    width: 5,
                   ),
-                  SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: SvgPicture.asset(
-                      path_2,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.black,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                  LottoBall(path: path_2),
+                  const SizedBox(
+                    width: 5,
                   ),
-                  SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: SvgPicture.asset(
-                      path_3,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.black,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                  LottoBall(path: path_3),
+                  const SizedBox(
+                    width: 5,
                   ),
-                  SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: SvgPicture.asset(
-                      path_4,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.black,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                  LottoBall(path: path_4),
+                  const SizedBox(
+                    width: 5,
                   ),
-                  SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: SvgPicture.asset(
-                      path_5,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.black,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                  LottoBall(path: path_5),
+                  const SizedBox(
+                    width: 5,
                   ),
-                  SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: SvgPicture.asset(
-                      path_6,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.black,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
+                  LottoBall(path: path_6),
                 ],
               ),
             );
@@ -125,8 +83,12 @@ class _LottoState extends State<Lotto> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: _createNumber,
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
       ),
     );
   }
