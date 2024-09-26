@@ -15,6 +15,7 @@ class Lotto extends StatefulWidget {
 }
 
 class _LottoState extends State<Lotto> {
+  final ScrollController _scrollController = ScrollController();
   List<List<int>> listLottery = [];
   void _createNumber() {
     if (listLottery.length < 15) {
@@ -58,16 +59,12 @@ class _LottoState extends State<Lotto> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 83, 125, 198),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 208, 105, 3),
-        title: const Text('Lotto app'),
-        centerTitle: true,
-      ),
       body: Center(
         child: Column(
           children: [
             Expanded(
               child: RawScrollbar(
+                controller: _scrollController,
                 thumbColor: const Color.fromARGB(255, 122, 157, 218),
                 thumbVisibility: true,
                 trackVisibility: true,
@@ -75,6 +72,7 @@ class _LottoState extends State<Lotto> {
                 radius: const Radius.circular(10),
                 interactive: true,
                 child: ListView.builder(
+                  controller: _scrollController,
                   padding: const EdgeInsets.all(8),
                   itemCount: listLottery.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -157,13 +155,44 @@ class _LottoState extends State<Lotto> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-        onPressed: _createNumber,
-        child: const Icon(
-          Icons.add,
-          color: Colors.black,
-        ),
+      floatingActionButton: Stack(
+        children: [
+          Positioned(
+            right: MediaQuery.of(context).orientation == Orientation.portrait
+                ? 10.0
+                : 76.0,
+            bottom: MediaQuery.of(context).orientation == Orientation.portrait
+                ? 66.0
+                : 6.0,
+            child: FloatingActionButton(
+              heroTag: 'button1',
+              backgroundColor: Colors.white,
+              onPressed: _createNumber,
+              child: const Icon(
+                Icons.add,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          Positioned(
+            right: 10,
+            bottom: 6,
+            child: FloatingActionButton(
+              heroTag: 'button2',
+              onPressed: () {
+                setState(() {
+                  listLottery.clear();
+                });
+              },
+              tooltip: "Clear numbers",
+              backgroundColor: Colors.white,
+              child: const Icon(
+                Icons.refresh_rounded,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
