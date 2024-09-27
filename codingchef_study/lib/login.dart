@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:login_app/lottery_app/layout_lotto.dart';
 import 'package:login_app/widget/my_container.dart';
@@ -32,12 +31,12 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 80,
                   ),
-                  Text(
-                    "Current width: ${currentWidth.toString()}",
-                    style: const TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
+                  // Text(
+                  //   "Current width: ${currentWidth.toString()}",
+                  //   style: const TextStyle(
+                  //     fontSize: 25,
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 10,
                   ),

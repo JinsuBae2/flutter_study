@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA88e1Ui0KqicQLtnGH5nckBTRa7-H5tRA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>756372858984</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.loginApp</string>
+	<key>PROJECT_ID</key>
+	<string>login-lotto-d09fc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>login-lotto-d09fc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:756372858984:ios:b8ee9e3e17c16a2aaeb3dd</string>
+</dict>
+</plist>
