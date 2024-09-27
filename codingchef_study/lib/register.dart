@@ -1,20 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:login_app/lottery_app/layout_lotto.dart';
-import 'package:login_app/register.dart';
 import 'package:login_app/widget/my_container.dart';
 import 'package:login_app/widget/my_textfield.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool showSpinner = false;
@@ -48,7 +45,7 @@ class _LoginState extends State<Login> {
                         height: 10,
                       ),
                       Image.asset(
-                        'images/codingchef.png',
+                        'images/signup.png',
                         width: 150,
                         height: 150,
                       )
@@ -67,7 +64,7 @@ class _LoginState extends State<Login> {
                         height: 5,
                       ),
                       Text(
-                        'Welcome Back!',
+                        'Welcome!',
                         style: TextStyle(
                           color: Colors.grey[700],
                           fontSize: 20,
@@ -136,7 +133,7 @@ class _LoginState extends State<Login> {
                           });
                           try {
                             final newUser = await FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
+                                .createUserWithEmailAndPassword(
                               email: emailController.text,
                               password: passwordController.text,
                             );
@@ -145,17 +142,9 @@ class _LoginState extends State<Login> {
                                 showSpinner = false;
                               });
                               if (!mounted) return;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const LayoutLotto(),
-                                ),
-                              );
-                              emailController.clear();
-                              passwordController.clear();
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text('Login successfully!'),
+                                content: Text('Sign up successfully!'),
                                 backgroundColor: Colors.blue,
                               ));
                             }
@@ -167,7 +156,8 @@ class _LoginState extends State<Login> {
                             if (!mounted) return;
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
-                              content: Text('Check your email and password!'),
+                              content: Text(
+                                  'Something wrong with a sign up process!'),
                               backgroundColor: Colors.blue,
                             ));
                           }
@@ -189,7 +179,7 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Not a number?',
+                            'Already a member?',
                             style: TextStyle(color: Colors.grey[700]),
                           ).animate().fade().slideX(
                                 begin: -3,
@@ -197,14 +187,9 @@ class _LoginState extends State<Login> {
                                 duration: 300.ms,
                               ),
                           TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Register()));
-                            },
+                            onPressed: () {},
                             child: const Text(
-                              'Register now',
+                              'Login',
                               style: TextStyle(
                                 color: Colors.blue,
                                 fontWeight: FontWeight.bold,
@@ -271,13 +256,12 @@ class _LoginState extends State<Login> {
             ),
             if (showSpinner)
               Positioned.fill(
-                child: Container(
-                  color: Colors.black.withOpacity(0.5),
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: Container(
+                color: Colors.black.withOpacity(0.5),
+                child: const Center(
+                  child: CircularProgressIndicator(),
                 ),
-              )
+              ))
           ],
         ),
       ),
